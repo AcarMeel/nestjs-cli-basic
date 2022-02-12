@@ -1,6 +1,7 @@
 Video Introduction to Data Transfer Objects
 Min 5:04
 
+## Open Docker. Start port
 ## Start containers in detached / background mode
 ```docker-compose up -d
 ```

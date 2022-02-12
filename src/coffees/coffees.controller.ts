@@ -11,7 +11,7 @@ export class CoffeesController {
     ) {}
 
     @Get()
-    public findAll(): Array<Coffee> {
+    public findAll(): Promise<Array<Coffee>> {
         return this.coffeeService.findAll();
     }
 
@@ -38,7 +38,7 @@ export class CoffeesController {
     }
 
     @Get(':id')
-    public findOne(@Param('id') id: number): Coffee {
+    public findOne(@Param('id') id: number): Promise<Coffee> {
         try {
             return this.coffeeService.findOne(id);
         } catch (error) {
