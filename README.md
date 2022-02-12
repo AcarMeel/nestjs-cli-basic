@@ -1,6 +1,14 @@
 Video Introduction to Data Transfer Objects
 Min 5:04
 
+## Start containers in detached / background mode
+```docker-compose up -d
+```
+
+## Stop containers
+```docker-compose down
+```
+
 ## Installation
 
 ```bash
