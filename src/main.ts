@@ -5,6 +5,7 @@ import { AppModule } from './app.module';
 import { ApiKeyGuard } from './common/guards/api-key.guard';
 import { ConfigService } from '@nestjs/config';
 import { WrapResponseInterceptor } from './common/interceptors/wrap-response.interceptor';
+import { TimeoutInterceptor } from './common/interceptors/timeout.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -18,7 +19,7 @@ async function bootstrap() {
   }));
   app.useGlobalFilters(new HttpExceptionFilter());
   // app.useGlobalGuards(new ApiKeyGuard()); See common.module
-  app.useGlobalInterceptors(new WrapResponseInterceptor());
+  app.useGlobalInterceptors(new WrapResponseInterceptor(), new TimeoutInterceptor(),);
   await app.listen(3000);
 }
 bootstrap();
