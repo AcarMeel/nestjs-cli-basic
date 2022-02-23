@@ -4,6 +4,7 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ApiKeyGuard } from './common/guards/api-key.guard';
 import { ConfigService } from '@nestjs/config';
+import { WrapResponseInterceptor } from './common/interceptors/wrap-response.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,6 +18,7 @@ async function bootstrap() {
   }));
   app.useGlobalFilters(new HttpExceptionFilter());
   // app.useGlobalGuards(new ApiKeyGuard()); See common.module
+  app.useGlobalInterceptors(new WrapResponseInterceptor());
   await app.listen(3000);
 }
 bootstrap();
