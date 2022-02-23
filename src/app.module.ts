@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { CoffeesModule } from './coffees/coffees.module';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { ConfigModule } from '@nestjs/config';
+import { CommonModule } from './common/common.module';
 import Joi from '@hapi/joi';
 
 @Module({
@@ -35,6 +36,7 @@ import Joi from '@hapi/joi';
       // synchronize: true,
     }),
     CoffeeRatingModule,
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [AppService],

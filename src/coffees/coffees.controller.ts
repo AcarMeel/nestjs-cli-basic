@@ -1,16 +1,18 @@
 import { PaginationQueryDto } from './../common/dto/pagination-query.dto';
 import { CoffeesService } from './coffees.service';
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query, Res, SetMetadata } from '@nestjs/common';
 import { Coffee } from './entities/coffee.entity';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
+import { Public } from 'src/common/decorators/public.decorator';
 
 @Controller('coffees')
 export class CoffeesController {
     constructor(
         private readonly coffeeService: CoffeesService,
     ) {}
-
+    
+    @Public()
     @Get()
     public findAll(@Query() paginationQuery: PaginationQueryDto): Promise<Array<Coffee>> {
         return this.coffeeService.findAll(paginationQuery);
