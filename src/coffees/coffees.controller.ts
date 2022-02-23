@@ -6,6 +6,7 @@ import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Public } from 'src/common/decorators/public.decorator';
 import { ParseIntPipe } from 'src/common/pipes/parse-int.pipe';
+import { Protocol } from 'src/common/decorators/protocol.decorator';
 
 @Controller('coffees')
 export class CoffeesController {
@@ -15,8 +16,9 @@ export class CoffeesController {
     
     @Public()
     @Get()
-    public async findAll(@Query() paginationQuery: PaginationQueryDto): Promise<Array<Coffee>> {
-        await new Promise(resolve => setTimeout(resolve, 5000));
+    public findAll(@Protocol() protocol: string, @Query() paginationQuery: PaginationQueryDto): Promise<Array<Coffee>> {
+        // await new Promise(resolve => setTimeout(resolve, 5000)); Test the timeout interceptor
+        console.log(protocol);
         return this.coffeeService.findAll(paginationQuery);
     }
 
